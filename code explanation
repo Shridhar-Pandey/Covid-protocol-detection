@@ -1,0 +1,52 @@
+Step-by-step explanation of the code:
+
+# First, several libraries are imported: time, math, cv2, numpy, and os.
+
+# The code checks whether the file coco.names exists in the current directory. If it does, the program prints "File exists". Otherwise, it prints "File does not exist".
+
+# The code sets two variables, confid and thresh, to 0.5.
+
+# The code prompts the user to input a video name from the ./videos directory. If no input is given, the default video name Town.mp4 is used.
+
+# The code sets several variables that will be used later: angle_factor to 0.8, H_zoom_factor to 1.2, and two empty strings vname and textIn.
+
+# The code defines several functions that will be used later:
+
+   -dist(c1, c2) calculates the Euclidean distance between two points.
+   -T2S(T) and T2C(T) calculate the sine and cosine of an angle, respectively.
+   -isclose(p1,p2) checks whether two points are close enough to be considered as the same object.
+   -The code sets the LABELS variable by reading the file coco.names and splitting the contents by line.
+
+# The code sets the weightsPath and configPath variables to the file paths of the YOLOv3 weights and configuration files.
+
+# The code reads the configuration file using cv2.dnn.readNetFromDarknet() and sets the layer names.
+
+# The code creates a new VideoCapture object from the video file specified earlier.
+
+# The code enters a while loop that will continue until the end of the video is reached.
+
+# Inside the loop, the code reads the next frame from the video using vs.read().
+
+# The code initializes several variables, including H and W for the height and width of the frame, and FR for a new frame to be generated later.
+
+# The code generates a blob from the frame using cv2.dnn.blobFromImage(). A blob is a preprocessed image that can be fed directly into a neural network.
+
+# The code sets the blob as the input to the neural network using net.setInput().
+
+# The code runs the input through the network using net.forward() and gets the output layer names.
+
+# The code iterates over each output layer and each detection within that layer.
+
+# For each detection, the code checks whether the detected object is a person and whether the confidence score exceeds confid.
+
+# If the object is a person and the confidence score is high enough, the code saves the bounding box coordinates, confidence score, and class ID for that object.
+
+# The code performs non-maximum suppression on the bounding boxes using cv2.dnn.NMSBoxes() to remove overlapping boxes and keep only the most confident ones.
+
+# If there are remaining bounding boxes after non-maximum suppression, the code loops through each box and draws it on the original frame using cv2.rectangle().
+
+# The code sets the FR frame to be the same size as the original frame with an additional 210 pixels at the bottom for displaying text.
+
+# The code displays the original frame and the FR frame using cv2.imshow().
+
+# The code waits for a key press using cv2.waitKey() and checks if the 'q' key was pressed. If it was, the loop
